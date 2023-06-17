@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 300px;
+      padding: 5px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Registration Form</h1>
+  <form id="registrationForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+    <label for="rollno">Roll:</label>
+    <input type="text" id="rollno" required>
+    <label for="branch">Branch:</label>
+    <input type="text" id="branch" required> <br><br>
+    <button type="submit">Register</button>
+  </form>
+
+  <table id="registrationTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Roll</th>
+        <th>Branch</th>
+      </tr>
+    </thead>
+    <tbody id="registrationData">
+    </tbody>
+  </table>
+
+  <script>
+    // Store registrations in an array
+    var registrations = [];
+
+    // Function to add registration to the table
+    function addRegistration(name, email, rollno, branch) {
+      var tableBody = document.getElementById("registrationData");
+      var newRow = tableBody.insertRow();
+      var nameCell = newRow.insertCell();
+      var emailCell = newRow.insertCell();
+      var rollnoCell = newRow.insertCell();
+      var branchCell = newRow.insertCell();
+
+      nameCell.innerHTML = name;
+      emailCell.innerHTML = email;
+      rollnoCell.innerHTML = rollno;
+      branchCell.innerHTML = branch;
+    }
+
+    // Function to handle form submission
+    function handleSubmit(event) {
+      event.preventDefault();
+      var nameInput = document.getElementById("name");
+      var emailInput = document.getElementById("email");
+      var rollnoInput = document.getElementById("rollno");
+      var branchInput = document.getElementById("branch");
+      var name = nameInput.value;
+      var email = emailInput.value;
+      var rollno = rollnoInput.value;
+      var branch = branchInput.value;
+
+      // Add registration to the array
+      registrations.push({ name: name, email: email, rollno: rollno, branch: branch });
+
+      // Add registration to the table
+      addRegistration(name, email, rollno, branch);
+
+      // Reset form inputs
+      nameInput.value = "";
+      emailInput.value = "";
+      rollnoInput.value = "";
+      branchInput.value = "";
+    }
+
+    // Attach form submission handler
+    var form = document.getElementById("registrationForm");
+    form.addEventListener("submit", handleSubmit);
+  </script>
+</body>
+</html>
